@@ -4,7 +4,7 @@ var hour = ['6am', '7am', '8am', '9am', '10am',
     '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 var store = [];
-function store (location, minCustmers, maxCustmer, AvgCookiesale) {
+function Store (location, minCustmers, maxCustmer, AvgCookiesale) {
     this.location = location;
     this.minCustmers = minCustmers;
     this.maxCustmer = maxCustmer;
@@ -18,25 +18,24 @@ function store (location, minCustmers, maxCustmer, AvgCookiesale) {
 
 
 
- store.prototype.customersPerHour = function () {
+ Store.prototype.customersPerHour = function () {
     for (var i = 0; i < hour.length; i++) {
         var hourly = Math.floor(Math.random() * (this.maxCustmer - this.minCustmers + 1) + this.minCustmers);
-        this.coutperhour.push(hourly);
+        this.couterperhour.push(hourly);
 
     }
 }
- 
-store.prototype.cookiPerHr = function () {
+Store.prototype.cookiPerHr = function () {
 
     for (var i = 0; i < hour.length; i++) {
-        var perhour = Math.ceil(this.AvgCookiesale * this.coutperhour[i]);
+        var perhour = Math.ceil(this.AvgCookiesale * this.couterperhour[i]);
         this.cookiesperHour.push(perhour);
         this.totalCookies += perhour;
 
     }
 
 }
-store.prototype.render = function () {
+Store.prototype.render = function () {
     var tableRow = document.createElement('tr');
     tableEl.appendChild(tableRow);
     var Datam = document.createElement('td');
@@ -98,31 +97,31 @@ function FooterRow() {
 
 
 HeaderRow();
-var Seattle = new store('Seattle', 23, 65, 6.3);
-var Tokyo = new store('Tokyo', 3, 24, 1.2);
-var Dubai = new store('Dubai', 11, 38, 3.7);
-var Paris = new store('Paris', 20, 38, 2.3);
-var Lima = new store('Lima', 2, 16, 4.6);
+var Seattle = new Store('Seattle', 23, 65, 6.3);
+var Tokyo = new Store('Tokyo', 3, 24, 1.2);
+var Dubai = new Store('Dubai', 11, 38, 3.7);
+var Paris = new Store('Paris', 20, 38, 2.3);
+var Lima = new Store('Lima', 2, 16, 4.6);
 
 
 Seattle.customersPerHour();
-Seattle.cookiesPerHr();
+Seattle.cookiPerHr();
 Seattle.render();
 
 Tokyo.customersPerHour();
-Tokyo.cookiesPerHr();
+Tokyo.cookiPerHr();
 Tokyo.render();
 
 Dubai.customersPerHour();
-Dubai.cookiesPerHr();
+Dubai.cookiPerHr();
 Dubai.render();
 
-Paris.customersPerHourr();
-Paris.cookiesPerHr();
+Paris.customersPerHour();
+Paris.cookiPerHr();
 Paris.render();
 
 Lima.customersPerHour();
-Lima.cookiesPerHr();
+Lima.cookiPerHr();
 Lima.render();
 
 FooterRow();
