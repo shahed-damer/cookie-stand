@@ -13,7 +13,7 @@ function getRandomCustomer(min, max) {
 
 let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-
+let totalhoures=[0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 function Store(city, min, max, avg) {
     this.city = city;
     this.minCustmers = min;
@@ -52,7 +52,7 @@ Store.prototype.getCustomer = function () {
             tr.appendChild(td);
             td.textContent = this.cookiesPerHour[i];
 
-           
+           totalhoures[i]+=this.cookiesPerHour[i];
         }
 
         let total = document.createElement('td');
@@ -90,7 +90,7 @@ function headerTable() {
     tr.appendChild(th3);
     th3.textContent = 'Daily Location Total';
 }
-
+let hourToltal=0;
 function footerTable() {
     let tr = document.createElement('tr');
     table.appendChild (tr);
@@ -99,26 +99,25 @@ function footerTable() {
     tr.appendChild (td);
     td.textContent='Totals';
 
-    let hourToltal= 0;
-    let berToltal =0;
+    
     console.log(hours,hours.length,newStore,newStore.length);
 
     for (let i = 0; i < hours.length; i++) {
-        hourToltal= 0;
-         for (let j = 0; j < newStore.lengtht; j++) {
-            let total = newStore[j].cookiesPerHour[i];
-            hourToltal+=total;
-             berToltal+=total;
-             console.log(hours,hours.length,newStore,newStore.length);
+        
+        //  for (let j = 0; j < newStore.lengtht; j++) {
+        //     let total = newStore[j].cookiesPerHour[i];
+        //     hourToltal+=total;
+        //      berToltal+=total;
+        //      console.log(hours,hours.length,newStore,newStore.length);
             
-         }
+         hourToltal +=totalhoures[i];
        let td1 = document.createElement('td');
        tr.appendChild(td1);
-       td1.textContent=hourToltal;
+       td1.textContent=totalhoures[i];
     }
     let td2 = document.createElement('td');
     tr.appendChild(td2);
-    td2.textContent=berToltal;
+    td2.textContent=hourToltal;
 }
 
 
@@ -143,5 +142,5 @@ lima.getCustomer();
 lima.render();
 footerTable();
 
-
+console.log(hourToltal)
 
