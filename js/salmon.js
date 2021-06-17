@@ -12,7 +12,6 @@ function getRandomCustomer(min, max) {
 
 
 let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-
 let totalhoures=[0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 function Store(city, min, max, avg) {
     this.city = city;
@@ -52,7 +51,7 @@ Store.prototype.getCustomer = function () {
             tr.appendChild(td);
             td.textContent = this.cookiesPerHour[i];
 
-           totalhoures[i]+=this.cookiesPerHour[i];
+        totalhoures[i]+=this.cookiesPerHour[i];   
         }
 
         let total = document.createElement('td');
@@ -90,27 +89,27 @@ function headerTable() {
     tr.appendChild(th3);
     th3.textContent = 'Daily Location Total';
 }
-let hourToltal=0;
+let hourToltal= 0;
 function footerTable() {
+    let foot = document.createElement('tfoot');
+    table.appendChild(foot);
     let tr = document.createElement('tr');
-    table.appendChild (tr);
+    foot.appendChild (tr);
 
     let td = document.createElement('td');
     tr.appendChild (td);
     td.textContent='Totals';
 
+   
     
-    console.log(hours,hours.length,newStore,newStore.length);
-
+    
     for (let i = 0; i < hours.length; i++) {
-        
-        //  for (let j = 0; j < newStore.lengtht; j++) {
-        //     let total = newStore[j].cookiesPerHour[i];
-        //     hourToltal+=total;
-        //      berToltal+=total;
+       
+       
         //      console.log(hours,hours.length,newStore,newStore.length);
             
-         hourToltal +=totalhoures[i];
+       
+         hourToltal += totalhoures[i];
        let td1 = document.createElement('td');
        tr.appendChild(td1);
        td1.textContent=totalhoures[i];
@@ -120,6 +119,23 @@ function footerTable() {
     td2.textContent=hourToltal;
 }
 
+
+
+let formStore=document.getElementById("newstore");
+formStore.addEventListener('submit',addstore);
+function addstore(event){
+    event.preventDefault();
+    let city = event.target.city.value;
+    let minCustmers = event.target.minCustmers.value;
+    let maxCustmer  = event.target.maxCustmer.value;
+    let avgCookies  = event.target.avgCookies.value;
+    let secondstore = new Store(city,minCustmers,maxCustmer,avgCookies);
+    table.deleteTFoot();
+    secondstore.getCustomer();
+    secondstore.render();
+    footerTable();
+
+}
 
 headerTable();
 
@@ -132,8 +148,8 @@ let lima = new Store('liam', 2, 16, 4.6)
 seattle.getCustomer();
 seattle.render();
 
-tokyo.getCustomer();
-tokyo.render();
+ tokyo.getCustomer();
+ tokyo.render();
 dubai.getCustomer();
 dubai.render();
 paris.getCustomer();
@@ -142,5 +158,6 @@ lima.getCustomer();
 lima.render();
 footerTable();
 
-console.log(hourToltal)
 
+
+console.log(hourToltal);
