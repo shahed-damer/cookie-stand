@@ -12,16 +12,16 @@ body{
 
 }
 
-footer{
-    text-align: center;
+
     
 
-}
+
 div:nth-child(2){
     display: grid;
     place-items: center;
 }
-div:nth-child(3){
-    float: center;
+div:nth-child(4){
+    
+    text-decoration-line: none;
 
 }
